@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="" id="app">
+    <div class="">
+        <input type="text" v-model.number="input1" placeholder="input1">
+        <input type="text" v-model.number="input2" placeholder="input2">
+        <button @click="run()">Calculate</button>
+        <button @click="save()">Save</button>
+        <br>
+        <h3>{{result}}</h3>
+
+
+        <ul>
+            <li v-for="history in histories">{{history}}</li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+           result : 0,
+           input1 : "",
+           input2 : "",
+            histories: [],
+        },
+        methods: {
+            run() {
+                return this.result = `${this.input1}+${this.input2}=${this.input1+this.input2}`;
+            },
+            save(){
+                 this.histories.push(this.result);
+                 this.input2="";
+                 this.input1="";
+                 this.result=0;
+            }
+        },
+    })
+</script>
+</body>
+</html>
